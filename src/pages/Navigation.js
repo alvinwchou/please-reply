@@ -2,11 +2,12 @@
 import { Link } from "react-router-dom"
 
 
-function Navigation() {
+function Navigation({ displayName }) {
     return (
         <div className="navigation">
             <Link to='/'>Please Reply</Link>
             <nav>
+                {displayName && <p>Welcome, {displayName}</p>}
                 <Link to='/register'>Register</Link>
                 <Link to='/login'>Log In</Link>
             </nav>

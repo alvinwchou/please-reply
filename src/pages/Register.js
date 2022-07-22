@@ -70,7 +70,7 @@ function Register({ registerUser }) {
                         onChange={handleChange}
                         value={registrationForm.displayName}
                     />
-                    <label htmlFor="">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
                         name="email"
@@ -80,7 +80,7 @@ function Register({ registerUser }) {
                         onChange={handleChange}
                         value={registrationForm.email}
                     />
-                    <label htmlFor="">Password</label>
+                    <label htmlFor="passOne">Password</label>
                     <input
                         type="password"
                         name="passOne"

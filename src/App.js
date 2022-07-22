@@ -2,11 +2,11 @@ import Navigation from './pages/Navigation';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import LogIn from './pages/LogIn';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { onAuthStateChanged, updateProfile } from 'firebase/auth';
 import { auth } from './firebase.js';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [user, setUser] = useState({
@@ -14,6 +14,8 @@ function App() {
     displayName: null,
     userID: null
   })
+
+  let navigate = useNavigate()
 
   const registerUser = (userName) => {
     onAuthStateChanged(auth, currentUser => {
@@ -28,11 +30,27 @@ function App() {
         })
       })
     })
+    // route to homepage after registering
+    navigate('/')
   }
+
+  useEffect(() => {
+    onAuthStateChanged(auth, currentUser => {
+      if (currentUser) {
+        setUser({
+          'user': currentUser,
+          'displayName': currentUser.displayName,
+          'userID': currentUser.uid,
+        })
+      } else {
+        setUser({ ...user, 'user': null })
+      }
+    })
+  }, [])
 
   return (
     <div className="App">
-      <Navigation />
+      <Navigation displayName={user.displayName}/>
 
       <Routes>
         <Route path='/' element={<Home />} />
