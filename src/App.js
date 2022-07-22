@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import LogIn from './pages/LogIn';
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { onAuthStateChanged, updateProfile } from 'firebase/auth';
+import { onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
 import { auth } from './firebase.js';
 
 import { useEffect, useState } from 'react';
@@ -43,17 +43,33 @@ function App() {
           'userID': currentUser.uid,
         })
       } else {
-        setUser({ ...user, 'user': null })
+        setUser({
+          user: null,
+          displayName: null,
+          userID: null,
+        })
       }
     })
   }, [])
 
+  const logoutUser  = () => {
+    setUser({
+      user: null,
+      displayName: null,
+      userID: null,
+    })
+
+    signOut(auth).then(() => {
+      navigate('/login')
+    })
+  }
+
   return (
     <div className="App">
-      <Navigation displayName={user.displayName}/>
+      <Navigation displayName={user.displayName} logoutUser={logoutUser}/>
 
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home displayName={user.displayName} />} />
         <Route path='/register' element={<Register registerUser={registerUser}/>} />
         <Route path='/login' element={<LogIn />} />
       </Routes>
