@@ -5,8 +5,9 @@ import LogIn from './pages/LogIn';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
 import { auth } from './firebase.js';
-
 import { useEffect, useState } from 'react';
+import './styles/styles.css'
+
 
 function App() {
   const [user, setUser] = useState({
