@@ -1,0 +1,12 @@
+// home.scss
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    a {
+        display: inline-block;
+    }
+}

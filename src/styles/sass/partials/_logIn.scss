@@ -1,0 +1,10 @@
+// logIn.scss
+
+.logIn {
+    fieldset {
+        width: min(90%, 500px);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+}
