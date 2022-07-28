@@ -7,6 +7,7 @@ import { onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
 import { auth } from './firebase.js';
 import { useEffect, useState } from 'react';
 import './styles/styles.css'
+import CreateEvent from './pages/CreateEvent';
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
         <Route path='/' element={<Home displayName={user.displayName} />} />
         <Route path='/register' element={<Register registerUser={registerUser}/>} />
         <Route path='/login' element={<LogIn />} />
+        <Route path='/createevent' element={<CreateEvent />} />
       </Routes>
       
     </div>
