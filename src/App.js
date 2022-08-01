@@ -4,10 +4,12 @@ import Register from './pages/Register';
 import LogIn from './pages/LogIn';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
-import { auth } from './firebase.js';
+import { auth, } from './firebase.js';
 import { useEffect, useState } from 'react';
 import './styles/styles.css'
 import CreateEvent from './pages/CreateEvent';
+import { getDatabase, ref, push } from 'firebase/database';
+import firebase from './firebase';
 
 
 function App() {
@@ -66,6 +68,19 @@ function App() {
     })
   }
 
+  const addEvent = (eventDetails) => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database, `events/${user.user.uid}`)
+    push(dbRef, {
+      'eventName:': eventDetails.eventName,
+      'startDate:': eventDetails.startDate,
+      'startTime:': eventDetails.startTime,
+      'endDate:': eventDetails.endDate,
+      'endTime:': eventDetails.endTime,
+      'description:': eventDetails.description
+    })
+  }
+
   return (
     <div className="App">
       <Navigation displayName={user.displayName} logoutUser={logoutUser}/>
@@ -74,7 +89,7 @@ function App() {
         <Route path='/' element={<Home displayName={user.displayName} />} />
         <Route path='/register' element={<Register registerUser={registerUser}/>} />
         <Route path='/login' element={<LogIn />} />
-        <Route path='/createevent' element={<CreateEvent />} />
+        <Route path='/createevent' element={<CreateEvent addEvent={addEvent}/>} />
       </Routes>
       
     </div>

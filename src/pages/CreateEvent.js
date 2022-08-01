@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-function CreateEvent() {
+function CreateEvent({ addEvent }) {
     const [createEventForm, setCreateEventForm] = useState({
         eventName: '',
         startDate: '',
@@ -20,9 +20,12 @@ function CreateEvent() {
 
         setCreateEventForm({...createEventForm, [itemName]: itemValue})
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         
+        addEvent(createEventForm)
+
         setCreateEventForm({
             eventName: '',
             startDate: '',
@@ -34,14 +37,18 @@ function CreateEvent() {
     }
 
     useEffect(() => {
-        const now = new Date()
-        console.log(now.getFullYear(), now.getMonth() + 1, now.getDay());
+        const now = new Date();
+
         const year = now.getFullYear();
-        const month = now.getMonth() + 1 < 10 ? `0${now.getMonth() + 1}` : now.getMonth() +1
-        const date = now.getDate() < 10 ? `0${now.getDate()}` : now.getDate()
-        const today = `${year}-${month}-${date}`
-        console.log(today)
-        setCurrentDate({...currentDate, 'today': today})
+        const month = now.getMonth() + 1 < 10 ? `0${now.getMonth() + 1}` : now.getMonth() +1;
+        const date = now.getDate() < 10 ? `0${now.getDate()}` : now.getDate();
+        const today = `${year}-${month}-${date}`;
+
+        const hour = now.getHours() < 10 ? `0${now.getHours()}` : now.getHours();
+        const minute = now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes();
+        const time = `${hour}:${minute}`
+
+        setCurrentDate({ ...currentDate, 'today': today, 'time': time})
 
     }, [])
 
