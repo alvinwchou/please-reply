@@ -1,10 +1,13 @@
 // Events.js
 
-function Events({ events }) {
+import { Link } from "react-router-dom"
+
+function Events({ events, userID }) {
 
     return (
         <div className="events">
             <h1>Events</h1>
+            <Link to='/createEvent'>Create Event</Link>
             {events.map(event => {
                 return (
                     <div>
@@ -14,7 +17,7 @@ function Events({ events }) {
                         <p>{event.startTime}</p>
                         <p>{event.eventName}</p>
                         <p>{event.location}</p>
-                        <p>Going</p>
+                        <Link to={`/signUp/${userID}/${event.eventID}`}>Going</Link>
                         <p>Guest List</p>
                         <p>Share/Delete</p>
                         <p>{event.description}</p>
