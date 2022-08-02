@@ -1,6 +1,7 @@
 // CreateEvent.js
 
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 function CreateEvent({ addEvent }) {
     const [createEventForm, setCreateEventForm] = useState({
@@ -9,6 +10,7 @@ function CreateEvent({ addEvent }) {
         startTime: '',
         endDate: '',
         endTime: '',
+        location: '',
         description: ''
     })
 
@@ -20,6 +22,8 @@ function CreateEvent({ addEvent }) {
 
         setCreateEventForm({...createEventForm, [itemName]: itemValue})
     }
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,6 +39,8 @@ function CreateEvent({ addEvent }) {
             location: '',
             description: ''
         })
+
+        navigate('/event')
     }
 
     useEffect(() => {
@@ -109,7 +115,6 @@ function CreateEvent({ addEvent }) {
                         name="location"
                         id="location"
                         placeholder="location"
-                        required
                         onChange={handleChange}
                         value={createEventForm.location}
                     />

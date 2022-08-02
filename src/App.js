@@ -12,6 +12,7 @@ import { getDatabase, ref, push, onValue } from 'firebase/database';
 import firebase from './firebase';
 import Events from './pages/Events';
 import SignUp from './pages/SignUp';
+import GuestList from './pages/GuestList';
 
 
 function App() {
@@ -49,10 +50,8 @@ function App() {
         onValue(dbRef, res => {
           const data = res.val();
           let eventList = [];
-          console.log('data', data)
+
           for(let item in data) {
-            console.log('item', data[item])
-            console.log('item.eventName', data[item].eventName)
             eventList.push({
               eventID: item,
               eventName: data[item].eventName,
@@ -118,6 +117,7 @@ function App() {
         <Route path='/createEvent' element={<CreateEvent addEvent={addEvent}/>} />
         <Route path='/events' element={<Events events={user.events} userID={user.userID} />} />
         <Route path='/signUp/:userID/:eventID' element={<SignUp />} />
+        <Route path='/guestList/:userID/:eventID' element={<GuestList />} />
       </Routes>
       
     </div>

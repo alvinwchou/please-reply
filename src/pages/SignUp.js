@@ -27,11 +27,11 @@ function SignUp() {
         e.preventDefault();
 
         const database = getDatabase(firebase);
-        const dbRef = ref(database, `events/${userID}/${eventID}/attendees`)
+        const dbRef = ref(database, `events/${userID}/${eventID}/guestList`)
 
         push(dbRef, {
-            'attendeeName': signUpForm.name,
-            'attendeeEmail': signUpForm.email
+            'guestName': signUpForm.name,
+            'guestEmail': signUpForm.email
         })
 
         navigate(`/events`)
