@@ -32,6 +32,7 @@ function CreateEvent({ addEvent }) {
             startTime: '',
             endDate: '',
             endTime: '',
+            location: '',
             description: ''
         })
     }
@@ -102,9 +103,18 @@ function CreateEvent({ addEvent }) {
                         onChange={handleChange}
                         value={createEventForm.endTime}
                     />
-                    <label htmlFor="description">Description</label>
+                    <label htmlFor="location">Location</label>
                     <input
                         type="text"
+                        name="location"
+                        id="location"
+                        placeholder="location"
+                        required
+                        onChange={handleChange}
+                        value={createEventForm.location}
+                    />
+                    <label htmlFor="description">Description</label>
+                    <textarea
                         name="description"
                         id="description"
                         placeholder="Description"

@@ -10,6 +10,7 @@ function Navigation({ displayName, logoutUser}) {
                 {displayName ?
                     <>
                         <p>Welcome, {displayName}</p>
+                        <Link to='/events'>Events</Link>
                         <Link to='' onClick={ logoutUser }>Log Out</Link>
                     </>
                 :

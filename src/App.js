@@ -8,8 +8,9 @@ import { auth, } from './firebase.js';
 import { useEffect, useState } from 'react';
 import './styles/styles.css'
 import CreateEvent from './pages/CreateEvent';
-import { getDatabase, ref, push } from 'firebase/database';
+import { getDatabase, ref, push, onValue } from 'firebase/database';
 import firebase from './firebase';
+import Events from './pages/Events';
 
 
 function App() {
@@ -41,10 +42,33 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, currentUser => {
       if (currentUser) {
-        setUser({
-          'user': currentUser,
-          'displayName': currentUser.displayName,
-          'userID': currentUser.uid,
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `events/${currentUser.uid}`);
+
+        onValue(dbRef, res => {
+          const data = res.val();
+          let eventList = [];
+          console.log('data', data)
+          for(let item in data) {
+            console.log('item', data[item])
+            console.log('item.eventName', data[item].eventName)
+            eventList.push({
+              eventID: item,
+              eventName: data[item].eventName,
+              startDate: data[item].startDate,
+              startTime: data[item].startTime,
+              endDate: data[item].endDate,
+              endTime: data[item].endTime,
+              description: data[item].description
+            });
+          }
+
+          setUser({
+            'user': currentUser,
+            'displayName': currentUser.displayName,
+            'userID': currentUser.uid,
+            'events': eventList
+          })
         })
       } else {
         setUser({
@@ -72,12 +96,13 @@ function App() {
     const database = getDatabase(firebase);
     const dbRef = ref(database, `events/${user.user.uid}`)
     push(dbRef, {
-      'eventName:': eventDetails.eventName,
-      'startDate:': eventDetails.startDate,
-      'startTime:': eventDetails.startTime,
-      'endDate:': eventDetails.endDate,
-      'endTime:': eventDetails.endTime,
-      'description:': eventDetails.description
+      'eventName': eventDetails.eventName,
+      'startDate': eventDetails.startDate,
+      'startTime': eventDetails.startTime,
+      'endDate': eventDetails.endDate,
+      'endTime': eventDetails.endTime,
+      'location': eventDetails.location,
+      'description': eventDetails.description
     })
   }
 
@@ -90,6 +115,7 @@ function App() {
         <Route path='/register' element={<Register registerUser={registerUser}/>} />
         <Route path='/login' element={<LogIn />} />
         <Route path='/createevent' element={<CreateEvent addEvent={addEvent}/>} />
+        <Route path='/events' element={<Events events={user.events} />} />
       </Routes>
       
     </div>
