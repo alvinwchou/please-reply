@@ -40,7 +40,7 @@ function CreateEvent({ addEvent }) {
             description: ''
         })
 
-        navigate('/event')
+        navigate('/events')
     }
 
     useEffect(() => {

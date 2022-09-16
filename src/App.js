@@ -1,4 +1,4 @@
-import Navigation from './pages/Navigation';
+import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import LogIn from './pages/LogIn';
@@ -13,6 +13,7 @@ import firebase from './firebase';
 import Events from './pages/Events';
 import SignUp from './pages/SignUp';
 import GuestList from './pages/GuestList';
+import EventDetails from './pages/EventDetails';
 
 
 function App() {
@@ -25,8 +26,9 @@ function App() {
   let navigate = useNavigate()
 
   const registerUser = (userName) => {
+    // update state according to logged in user
     onAuthStateChanged(auth, currentUser => {
-      // add display to the authentication
+      // add displayName property and value (userName) to the authentication
       updateProfile(auth.currentUser, {
         displayName: userName
       }).then(() => {
@@ -42,6 +44,7 @@ function App() {
   }
 
   useEffect(() => {
+    // update state according to logged in user
     onAuthStateChanged(auth, currentUser => {
       if (currentUser) {
         const database = getDatabase(firebase);
@@ -72,9 +75,9 @@ function App() {
         })
       } else {
         setUser({
-          user: null,
-          displayName: null,
-          userID: null,
+          'user': null,
+          'displayName': null,
+          'userID': null,
         })
       }
     })
@@ -82,9 +85,9 @@ function App() {
 
   const logoutUser  = () => {
     setUser({
-      user: null,
-      displayName: null,
-      userID: null,
+      'user': null,
+      'displayName': null,
+      'userID': null,
     })
 
     signOut(auth).then(() => {
@@ -116,10 +119,10 @@ function App() {
         <Route path='/login' element={<LogIn />} />
         <Route path='/createEvent' element={<CreateEvent addEvent={addEvent}/>} />
         <Route path='/events' element={<Events events={user.events} userID={user.userID} />} />
+        <Route path='/eventDetails/:eventID' element={<EventDetails events={user.events} userID={user.userID} />} />
         <Route path='/signUp/:userID/:eventID' element={<SignUp />} />
         <Route path='/guestList/:userID/:eventID' element={<GuestList />} />
       </Routes>
-      
     </div>
   );
 }

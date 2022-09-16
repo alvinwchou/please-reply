@@ -34,6 +34,7 @@ function Register({ registerUser }) {
             registrationInfo.email,
             registrationInfo.password
         ).then(() => {
+            // check for any auth errors
             // pass the displayName back up to App.js so it can hold data at the top level
             registerUser(registrationInfo.displayName);
         }).catch(error => {
