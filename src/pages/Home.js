@@ -5,7 +5,8 @@ function Home({ displayName }) {
     return (
         <div className="home">
             <h1>Please Reply</h1>
-            <p>A simple app that allows users to create events and keeps trick of people that RSVP</p>
+            <p>Create events and invite your friends to join you. </p>
+            <p>One of the best ways to get people involved in your group is to create an event and invite them!</p>
             {!displayName && 
                 <div>
                     <Link to='/register'>Register</Link>
