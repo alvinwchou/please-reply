@@ -50,7 +50,6 @@ function LogIn() {
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Log In</legend>
-                    {logInForm.errorMessage && <FormError errorMessage={logInForm.errorMessage} />}
                     <label htmlFor="email">Email</label>
                     <input
                         type="email"
@@ -71,7 +70,8 @@ function LogIn() {
                         onChange={handleChange}
                         value={logInForm.password}
                     />
-                    <button>Log In</button>
+                    {logInForm.errorMessage && <FormError errorMessage={logInForm.errorMessage} />}
+                    <button className="btn">Log In</button>
                 </fieldset>
             </form>
         </div>

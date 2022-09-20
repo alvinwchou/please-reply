@@ -7,7 +7,8 @@ import { auth } from "../firebase";
 
 function Register({ registerUser }) {
     const [registrationForm, setRegistrationForm] = useState({
-        displayName: '',
+        firstName: '',
+        lastName: '',
         email: '',
         passOne: '',
         passTwo: '',
@@ -24,7 +25,9 @@ function Register({ registerUser }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const registrationInfo = {
-            displayName: registrationForm.displayName,
+            firstName: registrationForm.firstName,
+            lastName: registrationForm.lastName,
+            fullName: `${registrationForm.firstName} ${registrationForm.lastName}`,
             email: registrationForm.email,
             password: registrationForm.passOne,
         }
@@ -35,8 +38,8 @@ function Register({ registerUser }) {
             registrationInfo.password
         ).then(() => {
             // check for any auth errors
-            // pass the displayName back up to App.js so it can hold data at the top level
-            registerUser(registrationInfo.displayName);
+            // pass the firstName back up to App.js so it can hold data at the top level
+            registerUser(registrationInfo.firstName);
         }).catch(error => {
             if (error.message) {
                 setRegistrationForm({ ...registrationForm, 'errorMessage': error.message })
@@ -60,16 +63,25 @@ function Register({ registerUser }) {
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Register</legend>
-                    {registrationForm.errorMessage && <FormError errorMessage={registrationForm.errorMessage}/>}
-                    <label htmlFor="displayName">Display Name</label>
+                    <label htmlFor="firstName">First Name</label>
                     <input
                         type="text"
-                        name="displayName"
-                        id="displayName"
-                        placeholder="Display Name"
+                        name="firstName"
+                        id="firstName"
+                        placeholder="First Name"
                         required
                         onChange={handleChange}
-                        value={registrationForm.displayName}
+                        value={registrationForm.firstName}
+                    />
+                    <label htmlFor="lastName">Last Name</label>
+                    <input
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        placeholder="Last Name"
+                        required
+                        onChange={handleChange}
+                        value={registrationForm.lastName}
                     />
                     <label htmlFor="email">Email</label>
                     <input
@@ -100,7 +112,8 @@ function Register({ registerUser }) {
                         onChange={handleChange}
                         value={registrationForm.passTwo}
                     />
-                    <button>Register</button>
+                    {registrationForm.errorMessage && <FormError errorMessage={registrationForm.errorMessage}/>}
+                    <button className="btn">Register</button>
                 </fieldset>
             </form>
         </div>

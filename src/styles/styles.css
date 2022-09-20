@@ -233,6 +233,7 @@ template {
 * {
   margin: 0;
   padding: 0;
+  font-family: "Times New Roman", Times, serif;
 }
 
 html {
@@ -253,6 +254,18 @@ a {
   color: black;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
 svg {
   vertical-align: middle;
 }
@@ -261,7 +274,32 @@ svg {
   padding: 0.5rem;
   border: 1px solid #e41e3f;
   border-radius: 5px;
-  cursor: pointer;
+}
+
+fieldset {
+  width: min(90%, 500px);
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: rgb(248, 249, 250);
+  border-radius: 5px;
+}
+fieldset input {
+  margin-bottom: 1rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+fieldset button {
+  background-color: #e41e3f;
+}
+fieldset button:hover {
+  background-color: #be1834;
 }
 
 .navigation a:hover {
@@ -282,6 +320,14 @@ h1 {
 }
 .home a:hover {
   color: white;
+}
+
+fieldset button {
+  color: white;
+}
+
+.formError {
+  color: #e41e3f;
 }
 
 .navigation {
@@ -325,7 +371,7 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
   height: 50vh;
-  padding: 0 2rem;
+  padding: 2rem;
   text-align: center;
 }
 .home .onboarding {
@@ -345,26 +391,14 @@ h1 {
   background-color: #e41e3f;
 }
 
-.register fieldset {
-  width: min(90%, 500px);
-  margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.register {
+  padding: 2rem;
 }
 
-.logIn fieldset {
-  width: min(90%, 500px);
-  margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.logIn {
+  padding: 2rem;
+}
+
+.formError {
+  margin-bottom: 1rem;
 }

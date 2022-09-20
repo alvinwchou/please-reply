@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 html {
@@ -23,6 +24,18 @@ a {
     color: black;
 }
 
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+input {
+    font-family: inherit;
+}
+
 svg {
     vertical-align: middle;
 }
@@ -31,5 +44,25 @@ svg {
     padding: 0.5rem;
     border: 1px solid $primary;
     border-radius: 5px;
-    cursor: pointer;
+}
+
+fieldset {
+    width: min(90%, 500px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(248, 249, 250);
+    border-radius: 5px;
+    input {
+        margin-bottom: 1rem;
+        padding: 0.25rem 0.5rem;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+    button {
+        background-color: $primary;
+        &:hover {
+            background-color: #be1834;
+        }
+    }
 }
