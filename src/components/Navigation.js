@@ -1,15 +1,20 @@
 // Navigation.js
 import { Link } from "react-router-dom"
+import { MdEvent } from "react-icons/md"
 
 
 function Navigation({ displayName, logoutUser}) {
     return (
         <div className="navigation">
-            <Link to='/'>Please Reply</Link>
+            <Link to='/'>
+                <MdEvent /> Please Reply
+            </Link>
+            {displayName && <div className="welcome">
+                <p>Welcome, {displayName}</p>
+            </div> }
             <nav>
                 {displayName ?
                     <>
-                        <p>Welcome, {displayName}</p>
                         <Link to='/events'>Events</Link>
                         <Link to='' onClick={ logoutUser }>Log Out</Link>
                     </>

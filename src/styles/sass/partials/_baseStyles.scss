@@ -1,0 +1,28 @@
+// baseStyles.scss
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 125%;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+svg {
+    vertical-align: middle;
+}

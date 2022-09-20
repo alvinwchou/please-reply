@@ -230,6 +230,33 @@ template {
   overflow: hidden;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 125%;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+svg {
+  vertical-align: middle;
+}
+
 .navigation {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -237,10 +264,24 @@ template {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-color: aqua;
+  padding: 0.5rem 0.5rem;
+  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.5);
 }
-.navigation p {
-  display: inline-block;
+.navigation .welcome, .navigation nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.navigation p, .navigation a {
+  padding: 0.5rem;
+}
+.navigation a {
+  border-bottom: 1px solid transparent;
+}
+.navigation a:hover {
+  color: #e41e3f;
+  border-bottom: 1px solid #e41e3f;
 }
 
 .home {
