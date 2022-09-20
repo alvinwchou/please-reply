@@ -69,7 +69,7 @@ function CreateEvent({ addEvent }) {
                         type="text"
                         name="eventName"
                         id="eventName"
-                        placeholder="Event name"
+                        placeholder="Event Name"
                         required
                         onChange={handleChange}
                         value={createEventForm.eventName}
@@ -114,7 +114,7 @@ function CreateEvent({ addEvent }) {
                         type="text"
                         name="location"
                         id="location"
-                        placeholder="location"
+                        placeholder="Location"
                         onChange={handleChange}
                         value={createEventForm.location}
                     />
@@ -127,7 +127,7 @@ function CreateEvent({ addEvent }) {
                         onChange={handleChange}
                         value={createEventForm.description}
                     />
-                    <button>Create Event</button>
+                    <button className="btn">Create Event</button>
                 </fieldset>
             </form>
         </div>

@@ -289,7 +289,7 @@ fieldset {
   background-color: rgb(248, 249, 250);
   border-radius: 5px;
 }
-fieldset input {
+fieldset input, fieldset textarea {
   margin-bottom: 1rem;
   padding: 0.25rem 0.5rem;
   border: 1px solid black;
@@ -401,4 +401,8 @@ fieldset button {
 
 .formError {
   margin-bottom: 1rem;
+}
+
+.createEvent {
+  padding: 2rem;
 }
