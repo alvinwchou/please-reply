@@ -1,2 +1,21 @@
 // typography.scss
 
+.navigation a:hover {
+    color: $primary;
+}
+
+h1 {
+    margin: 0;
+    color: $primary;
+}
+
+.home p {
+    margin: 2rem 0;
+}
+
+.home a {
+    color: $primary;
+    &:hover {
+        color: white;
+    }
+}

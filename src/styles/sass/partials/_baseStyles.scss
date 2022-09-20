@@ -26,3 +26,10 @@ a {
 svg {
     vertical-align: middle;
 }
+
+.btn {
+    padding: 0.5rem;
+    border: 1px solid $primary;
+    border-radius: 5px;
+    cursor: pointer;
+}

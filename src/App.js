@@ -91,7 +91,7 @@ function App() {
     })
 
     signOut(auth).then(() => {
-      navigate('/login')
+      navigate('/')
     })
   }
 
