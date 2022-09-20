@@ -14,8 +14,8 @@
     a {
         border-bottom: 1px solid transparent;
         &:hover {
-            color: #e41e3f;
-            border-bottom: 1px solid #e41e3f;
+            color: $primary;
+            border-bottom: 1px solid $primary;
         }
     }
 }
