@@ -350,6 +350,10 @@ fieldset button {
   text-decoration: underline;
 }
 
+.bold {
+  font-weight: 700;
+}
+
 .navigation {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -453,4 +457,11 @@ fieldset button {
 }
 .events svg {
   color: #e41e3f;
+}
+
+.eventDetails {
+  width: min(90%, 1000px);
+  padding: 2rem;
+  margin: 0 auto;
+  border: 1px solid gold;
 }

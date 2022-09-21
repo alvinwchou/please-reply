@@ -17,31 +17,29 @@ function EventDetails({ events, userID }) {
     return (
         <div className="eventDetails">
             <h1>Event Details</h1>
-            <Link to='/createEvent'>Create Event</Link>
-            {events.filter(event => event.eventID == eventID).map(event => {
+            {events && events.filter(event => event.eventID == eventID).map(event => {
                 return (
-                    <div className="eventCard">
-                        <p>{event.startDate}</p>
-                        <p>{event.startTime}</p>
-                        <p>{event.endDate}</p>
-                        <p>{event.endTime}</p>
-                        <p>{event.eventName}</p>
-                        <p>{event.location}</p>
+                    <div className="eventCard" key={event.eventID}>
+                        <h3>{new Date(`'${event.startDate}'`).toDateString()} AT {event.startTime} - {new Date(`'${event.endDate}'`).toDateString()} AT {event.endTime}</h3>
+                        
+                        <h2>{event.eventName}</h2>
+                        <h3>{event.location}</h3>
                         <br></br>
                         <br></br>
-                        <button>Share</button>
-                        <button>Edit</button>
-                        <button onClick={() => deleteEvent(event.eventID)}>Delete</button>
+                        <Link to={`/signUp/${userID}/${event.eventID}`} className="btn" >Going</Link>
+                        <button className="btn">Invite</button>
+                        <button className="btn">Edit</button>
+                        <button className="btn" onClick={() => deleteEvent(event.eventID)}>Delete</button>
                         <br></br>
                         <br></br>
                         <br></br>
                         <br></br>
-                        <Link to={`/signUp/${userID}/${event.eventID}`}>Going</Link>
-                        <Link to={`/guestList/${userID}/${event.eventID}`}>Guest List</Link>
-                        <p>Details</p>
-                        <p>4 people responded</p>
-                        <p>Event Created by {userID}</p>
-                        <p>{event.description}</p>
+                        
+                        <h3><span className="bold">Details</span></h3>
+                        <p>4 people responded <Link to={`/guestList/${userID}/${event.eventID}`}>Guest List</Link></p>
+                        <p>Event Created by <span className="bold">{userID}</span></p>
+                        <p><span className="bold">{event.location}</span></p>
+                        <p>{event.description ? event.description : 'No details yet'}</p>
                     </div>
                 )
             })}
