@@ -8,6 +8,7 @@
 
 html {
     font-size: 125%;
+    background-color: $tintedBG;
 }
 
 img {
@@ -52,6 +53,7 @@ svg {
     padding: 0.5rem;
     border: 1px solid $primary;
     border-radius: 5px;
+    background-color: white;
 }
 
 fieldset {
@@ -59,15 +61,16 @@ fieldset {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    background-color: rgb(248, 249, 250);
+    background-color: white;
     border-radius: 5px;
     input, textarea {
         margin-bottom: 1rem;
         padding: 0.25rem 0.5rem;
+        background-color: $tintedBG;
         border: 1px solid black;
         border-radius: 5px;
     }
-    button {
+    .btn {
         background-color: $primary;
         &:hover {
             background-color: #be1834;

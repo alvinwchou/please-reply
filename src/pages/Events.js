@@ -5,8 +5,10 @@ import { BsPersonCircle } from "react-icons/bs"
 function Events({ events, userID }) {
     return (
         <div className="events">
-            <Link to='/createEvent' className="btn">Create Event</Link>
-            <h1>Events</h1>
+            <div className="eventsHeading">
+                <h1>Events</h1>
+                <Link to='/createEvent' className="btn">Create Event</Link>
+            </div>
 
             <div className="eventsGallery">
                 {events && events.map(event => {

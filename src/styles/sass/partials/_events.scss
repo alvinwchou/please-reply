@@ -2,34 +2,39 @@
 
 .events {
     width: min(90%, 1000px);
-    padding: 2rem;
-    margin: 0 auto;
-    & > a {
-        float: right;
+    padding: 2rem 0;
+    margin: 1rem auto;
+    background-color: white;
+    border-radius: 5px;
+    .eventsHeading {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 2rem;
     }
     .eventsGallery {
         padding-top: 1rem;
         position: relative;
-        .eventCard {
-            display: block;
-            height: calc(4rem * 1.15 + 2rem);
-            margin-bottom: 5px;
-            border-radius: 5px;
-            &:hover {
-                background-color: rgb(248, 249, 250);
-            }
-        }
     }
     .eventCard {
-        padding: 1rem;
+        display: block;
+        height: calc(4rem * 1.15 + 2rem);
+        margin-bottom: 5px;
+        padding: 1rem 3rem;
+        border-radius: 5px;
         position: relative;
         &:after {
             content: '';
-            width: calc(100% - 2rem);
-            border: 1px solid rgb(200, 200, 200);
+            width: calc(100% - 6rem);
+            border: 1px solid $greyDark;
             position: absolute;
             bottom: -3px;
         }
+        &:hover {
+            background-color: $greyLight;
+        }
+    }
+    .eventName {
+        display: inline-block;
     }
     svg {
         color: $primary;

@@ -238,6 +238,7 @@ template {
 
 html {
   font-size: 125%;
+  background-color: rgb(248, 249, 250);
 }
 
 img {
@@ -283,6 +284,7 @@ svg {
   padding: 0.5rem;
   border: 1px solid #e41e3f;
   border-radius: 5px;
+  background-color: white;
 }
 
 fieldset {
@@ -295,19 +297,20 @@ fieldset {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: rgb(248, 249, 250);
+  background-color: white;
   border-radius: 5px;
 }
 fieldset input, fieldset textarea {
   margin-bottom: 1rem;
   padding: 0.25rem 0.5rem;
+  background-color: rgb(248, 249, 250);
   border: 1px solid black;
   border-radius: 5px;
 }
-fieldset button {
+fieldset .btn {
   background-color: #e41e3f;
 }
-fieldset button:hover {
+fieldset .btn:hover {
   background-color: #be1834;
 }
 
@@ -362,6 +365,7 @@ fieldset button {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 0.5rem 0.5rem;
+  background-color: white;
   -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.5);
 }
@@ -425,43 +429,72 @@ fieldset button {
 
 .events {
   width: min(90%, 1000px);
-  padding: 2rem;
-  margin: 0 auto;
+  padding: 2rem 0;
+  margin: 1rem auto;
+  background-color: white;
+  border-radius: 5px;
 }
-.events > a {
-  float: right;
+.events .eventsHeading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 2rem;
 }
 .events .eventsGallery {
   padding-top: 1rem;
   position: relative;
 }
-.events .eventsGallery .eventCard {
+.events .eventCard {
   display: block;
   height: 6.6rem;
   margin-bottom: 5px;
+  padding: 1rem 3rem;
   border-radius: 5px;
-}
-.events .eventsGallery .eventCard:hover {
-  background-color: rgb(248, 249, 250);
-}
-.events .eventCard {
-  padding: 1rem;
   position: relative;
 }
 .events .eventCard:after {
   content: "";
-  width: calc(100% - 2rem);
+  width: calc(100% - 6rem);
   border: 1px solid rgb(200, 200, 200);
   position: absolute;
   bottom: -3px;
+}
+.events .eventCard:hover {
+  background-color: rgb(241, 241, 241);
+}
+.events .eventName {
+  display: inline-block;
 }
 .events svg {
   color: #e41e3f;
 }
 
 .eventDetails {
-  width: min(90%, 1000px);
-  padding: 2rem;
-  margin: 0 auto;
   border: 1px solid gold;
+}
+.eventDetails .headingTextContainer {
+  background-color: white;
+}
+.eventDetails .wrapper,
+.eventDetails .detailsTextContainer {
+  width: min(90%, 1000px);
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+.eventDetails .eventDetailsOptions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  padding: 0.5rem;
+  border-top: 1px solid rgb(200, 200, 200);
+}
+.eventDetails .eventDetailsOptions button {
+  margin-left: 0.5rem;
 }
