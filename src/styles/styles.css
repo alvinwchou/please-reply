@@ -252,6 +252,15 @@ ul {
 a {
   text-decoration: none;
   color: black;
+  display: inline-block;
+}
+
+.home a, .events a {
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+.home a:hover, .events a:hover {
+  background-color: #e41e3f;
 }
 
 button {
@@ -315,10 +324,10 @@ h1 {
   margin: 2rem 0;
 }
 
-.home a {
+.home a, .events a {
   color: #e41e3f;
 }
-.home a:hover {
+.home a:hover, .events a:hover {
   color: white;
 }
 
@@ -328,6 +337,17 @@ fieldset button {
 
 .formError {
   color: #e41e3f;
+}
+
+.events .eventsGallery a {
+  color: black;
+}
+
+.eventName {
+  font-weight: 700;
+}
+.eventName:hover {
+  text-decoration: underline;
 }
 
 .navigation {
@@ -382,14 +402,6 @@ fieldset button {
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
-.home a {
-  display: inline-block;
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
-}
-.home a:hover {
-  background-color: #e41e3f;
-}
 
 .register {
   padding: 2rem;
@@ -405,4 +417,41 @@ fieldset button {
 
 .createEvent {
   padding: 2rem;
+}
+
+.events {
+  width: min(90%, 1000px);
+  padding: 2rem;
+  border: 1px solid red;
+  margin: 0 auto;
+}
+.events > a {
+  float: right;
+}
+.events .eventsGallery {
+  padding-top: 1rem;
+  position: relative;
+}
+.events .eventsGallery .eventCard {
+  display: block;
+  height: 6.6rem;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+.events .eventsGallery .eventCard:hover {
+  background-color: rgb(248, 249, 250);
+}
+.events .eventCard {
+  padding: 1rem;
+  position: relative;
+}
+.events .eventCard:after {
+  content: "";
+  width: calc(100% - 2rem);
+  border: 1px solid rgb(200, 200, 200);
+  position: absolute;
+  bottom: -3px;
+}
+.events svg {
+  color: #e41e3f;
 }

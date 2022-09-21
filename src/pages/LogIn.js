@@ -34,8 +34,8 @@ function LogIn() {
             loginInfo.email,
             loginInfo.password
         ).then(() => {
-            // route to homepage after successful log in
-            navigate('/');
+            // route to events page after successful log in
+            navigate('/events');
         }).catch(error => {
             if (error.message) {
                 setLogInForm({ ...logInForm, 'errorMessage': error.message })

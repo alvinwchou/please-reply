@@ -13,12 +13,4 @@
         display: flex;
         justify-content: space-around;
     }
-    a {
-        display: inline-block;
-        transition: all 0.15s ease-in-out;
-        &:hover {
-            background-color: $primary;
-        }
-    }
-
 }

@@ -123,7 +123,6 @@ function CreateEvent({ addEvent }) {
                         name="description"
                         id="description"
                         placeholder="Description"
-                        required
                         onChange={handleChange}
                         value={createEventForm.description}
                     />

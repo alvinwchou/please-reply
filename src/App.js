@@ -62,6 +62,7 @@ function App() {
               startTime: data[item].startTime,
               endDate: data[item].endDate,
               endTime: data[item].endTime,
+              location: data[item].location,
               description: data[item].description
             });
           }

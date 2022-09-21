@@ -1,0 +1,39 @@
+// events.scss
+
+.events {
+    width: min(90%, 1000px);
+    padding: 2rem;
+    border: 1px solid red;
+    margin: 0 auto;
+    & > a {
+        float: right;
+    }
+    .eventsGallery {
+        padding-top: 1rem;
+        position: relative;
+        .eventCard {
+            display: block;
+            height: calc(4rem * 1.15 + 2rem);
+            margin-bottom: 5px;
+            border-radius: 5px;
+            &:hover {
+                background-color: rgb(248, 249, 250);
+            }
+        }
+    }
+    .eventCard {
+        padding: 1rem;
+        position: relative;
+        &:after {
+            content: '';
+            width: calc(100% - 2rem);
+            border: 1px solid rgb(200, 200, 200);
+            position: absolute;
+            bottom: -3px;
+        }
+    }
+    svg {
+        color: $primary;
+    }
+
+}
