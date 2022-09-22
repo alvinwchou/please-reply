@@ -3,6 +3,8 @@
 import { getDatabase, ref, remove } from "firebase/database"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import firebase from "../firebase"
+import { FaUsers, FaUser } from "react-icons/fa"
+import { ImLocation } from "react-icons/im"
 
 function EventDetails({ events, userID }) {
     const { eventID: eventID } = useParams();
@@ -41,9 +43,9 @@ function EventDetails({ events, userID }) {
                         <br></br>
                         <div className="detailsTextContainer">
                             <h3><span className="bold">Details</span></h3>
-                            <p>4 people responded <Link to={`/guestList/${userID}/${event.eventID}`}>Guest List</Link></p>
-                            <p>Event Created by <span className="bold">{userID}</span></p>
-                            <p><span className="bold">{event.location}</span></p>
+                            <p><FaUsers /> 4 people responded <Link to={`/guestList/${userID}/${event.eventID}`}>Guest List</Link></p>
+                            <p><FaUser /> Event Created by <span className="bold">{userID}</span></p>
+                            <p><ImLocation /><span className="bold">{event.location}</span></p>
                             {event.description ? <p>{event.description}</p> : <p><span className="grey">No details yet</span></p>}
                         </div>
                     </div>
