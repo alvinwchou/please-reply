@@ -42,3 +42,15 @@ fieldset button {
 .bold {
     font-weight: 700;
 }
+
+.eventDetailsOptions a, 
+.eventDetailsOptions .btn {
+    color: $primary;
+    &:hover {
+        color: white;
+    }
+} 
+
+.grey {
+    color: rgb(200, 200, 200);;
+}

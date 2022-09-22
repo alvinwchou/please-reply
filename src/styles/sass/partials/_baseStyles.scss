@@ -27,7 +27,6 @@ a {
 }
 
 .home a, .events a {
-    transition: all 0.15s ease-in-out;
     &:hover {
         background-color: $primary;
     }
@@ -54,6 +53,7 @@ svg {
     border: 1px solid $primary;
     border-radius: 5px;
     background-color: white;
+    transition: all 0.3s ease-in-out;
 }
 
 fieldset {

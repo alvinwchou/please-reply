@@ -256,10 +256,6 @@ a {
   display: inline-block;
 }
 
-.home a, .events a {
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
-}
 .home a:hover, .events a:hover {
   background-color: #e41e3f;
 }
@@ -285,6 +281,8 @@ svg {
   border: 1px solid #e41e3f;
   border-radius: 5px;
   background-color: white;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 fieldset {
@@ -355,6 +353,19 @@ fieldset button {
 
 .bold {
   font-weight: 700;
+}
+
+.eventDetailsOptions a,
+.eventDetailsOptions .btn {
+  color: #e41e3f;
+}
+.eventDetailsOptions a:hover,
+.eventDetailsOptions .btn:hover {
+  color: white;
+}
+
+.grey {
+  color: rgb(200, 200, 200);
 }
 
 .navigation {
@@ -473,10 +484,13 @@ fieldset button {
 }
 
 .eventDetails {
-  border: 1px solid gold;
+  padding: 2rem 0;
 }
 .eventDetails .headingTextContainer {
+  padding-top: 0.5rem;
   background-color: white;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  position: relative;
 }
 .eventDetails .wrapper,
 .eventDetails .detailsTextContainer {
@@ -484,6 +498,12 @@ fieldset button {
   background-color: white;
   margin: 0 auto;
   border-radius: 5px;
+}
+.eventDetails .wrapper {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 .eventDetails .eventDetailsOptions {
   display: -webkit-box;
@@ -497,4 +517,14 @@ fieldset button {
 }
 .eventDetails .eventDetailsOptions button {
   margin-left: 0.5rem;
+}
+.eventDetails .eventDetailsOptions a:hover, .eventDetails .eventDetailsOptions .btn:hover {
+  background-color: #e41e3f;
+}
+.eventDetails .detailsTextContainer {
+  border: 1px solid rgb(200, 200, 200);
+  padding: 1rem;
+}
+.eventDetails .detailsTextContainer > * {
+  padding-bottom: 1rem;
 }
