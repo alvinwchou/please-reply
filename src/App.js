@@ -11,7 +11,7 @@ import CreateEvent from './pages/CreateEvent';
 import { getDatabase, ref, push, onValue } from 'firebase/database';
 import firebase from './firebase';
 import Events from './pages/Events';
-import SignUp from './pages/SignUp';
+import Attending from './pages/Attending';
 import GuestList from './pages/GuestList';
 import EventDetails from './pages/EventDetails';
 
@@ -123,7 +123,7 @@ function App() {
         <Route path='/createEvent' element={<CreateEvent addEvent={addEvent} fullName={user.displayName}/>} />
         <Route path='/events' element={<Events events={user.events} userID={user.userID} />} />
         <Route path='/eventDetails/:eventID' element={<EventDetails events={user.events} userID={user.userID} />} />
-        <Route path='/signUp/:userID/:eventID' element={<SignUp />} />
+        <Route path='/signUp/:userID/:eventID' element={<Attending />} />
         <Route path='/guestList/:userID/:eventID' element={<GuestList />} />
       </Routes>
     </div>

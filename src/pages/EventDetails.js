@@ -33,7 +33,7 @@ function EventDetails({ events, userID }) {
                                 <h3>{new Date(`'${event.startDate}'`).toDateString()} {event.startTime && `AT ${event.startTime}`} {(event.endDate || event.endTime) && '-'} {event.endDate && new Date(`'${event.endDate}'`).toDateString()} {event.endDate && 'AT'} {event.endTime && `${event.endTime}`}</h3>
                                 <h3><span className="grey">{event.location}</span></h3>
                                 <div className="eventDetailsOptions">
-                                    <Link to={`/signUp/${userID}/${event.eventID}`} className="btn" >Going</Link>
+                                    <Link to={`/attending/${userID}/${event.eventID}`} className="btn" >Going</Link>
                                     <button className="btn">Invite</button>
                                     <button className="btn">Edit</button>
                                     <button className="btn" onClick={() => deleteEvent(event.eventID)}>Delete</button>

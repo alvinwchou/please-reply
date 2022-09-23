@@ -1,12 +1,12 @@
-// SignUp.js
+// Attending.js
 
 import { getDatabase, push, ref } from "firebase/database";
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import firebase from "../firebase";
 
-function SignUp() {
-    const [signUpForm, setSignUpForm] = useState({
+function Attending() {
+    const [attendingForm, setAttendingForm] = useState({
         name: '',
         email: ''
     })
@@ -18,7 +18,7 @@ function SignUp() {
         const itemName = e.target.name;
         const itemValue = e.target.value;
 
-        setSignUpForm({...signUpForm, [itemName]: itemValue})
+        setAttendingForm({...attendingForm, [itemName]: itemValue})
     }
 
     const navigate = useNavigate();
@@ -30,15 +30,15 @@ function SignUp() {
         const dbRef = ref(database, `events/${userID}/${eventID}/guestList`)
 
         push(dbRef, {
-            'guestName': signUpForm.name,
-            'guestEmail': signUpForm.email
+            'guestName': attendingForm.name,
+            'guestEmail': attendingForm.email
         })
 
         navigate(`/events`)
     }
 
     return (
-        <div className="signUp">
+        <div className="attending">
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Sign Up</legend>
@@ -50,7 +50,7 @@ function SignUp() {
                         placeholder="Name"
                         required
                         onChange={handleChange}
-                        value={signUpForm.name}
+                        value={attendingForm.name}
                     />
                     <label htmlFor="email">Email</label>
                     <input
@@ -60,7 +60,7 @@ function SignUp() {
                         placeholder="email"
                         required
                         onChange={handleChange}
-                        value={signUpForm.email}
+                        value={attendingForm.email}
                     />
                     <button>Confirm Sign Up</button>
                 </fieldset>
@@ -69,4 +69,4 @@ function SignUp() {
     )
 }
 
-export default SignUp
+export default Attending
