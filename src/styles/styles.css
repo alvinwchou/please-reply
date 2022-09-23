@@ -347,7 +347,8 @@ fieldset button {
 .eventName {
   font-weight: 700;
 }
-.eventName:hover {
+
+.events .eventName:hover {
   text-decoration: underline;
 }
 
@@ -531,4 +532,11 @@ fieldset button {
 .eventDetails .detailsTextContainer svg {
   margin-right: 0.5rem;
   color: #e41e3f;
+}
+
+.rsvp {
+  padding: 2rem;
+}
+.rsvp .rsvpFromHeader {
+  padding: 0 0 0.5rem 1rem;
 }

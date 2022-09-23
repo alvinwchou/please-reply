@@ -1,12 +1,12 @@
-// Attending.js
+// RSVP.js
 
 import { getDatabase, push, ref } from "firebase/database";
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import firebase from "../firebase";
 
-function Attending() {
-    const [attendingForm, setAttendingForm] = useState({
+function RSVP({events}) {
+    const [rsvpForm, setRsvpForm] = useState({
         name: '',
         email: ''
     })
@@ -18,7 +18,7 @@ function Attending() {
         const itemName = e.target.name;
         const itemValue = e.target.value;
 
-        setAttendingForm({...attendingForm, [itemName]: itemValue})
+        setRsvpForm({...rsvpForm, [itemName]: itemValue})
     }
 
     const navigate = useNavigate();
@@ -30,18 +30,27 @@ function Attending() {
         const dbRef = ref(database, `events/${userID}/${eventID}/guestList`)
 
         push(dbRef, {
-            'guestName': attendingForm.name,
-            'guestEmail': attendingForm.email
+            'guestName': rsvpForm.name,
+            'guestEmail': rsvpForm.email
         })
 
         navigate(`/events`)
     }
 
     return (
-        <div className="attending">
+        <div className="rsvp">
             <form onSubmit={handleSubmit}>
                 <fieldset>
-                    <legend>Sign Up</legend>
+                    <legend>RSVP</legend>
+                    {events && events.filter(event => event.eventID === eventID).map(event => {
+                        return (
+                            <div className="rsvpFromHeader">
+                                <p>{new Date(`'${event.startDate}'`).toDateString()}</p>
+                                <p className="eventName">{event.eventName}</p>
+                                <p>{event.location}</p>
+                            </div>
+                        )
+                    })}
                     <label htmlFor="name">Name</label>
                     <input
                         type="text"
@@ -50,23 +59,23 @@ function Attending() {
                         placeholder="Name"
                         required
                         onChange={handleChange}
-                        value={attendingForm.name}
+                        value={rsvpForm.name}
                     />
                     <label htmlFor="email">Email</label>
                     <input
                         type="text"
                         name="email"
                         id="email"
-                        placeholder="email"
+                        placeholder="Email"
                         required
                         onChange={handleChange}
-                        value={attendingForm.email}
+                        value={rsvpForm.email}
                     />
-                    <button>Confirm Sign Up</button>
+                    <button className="btn">Confirm RSVP</button>
                 </fieldset>
             </form>
         </div>
     )
 }
 
-export default Attending
+export default RSVP
