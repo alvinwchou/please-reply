@@ -63,7 +63,8 @@ function App() {
               endDate: data[item].endDate,
               endTime: data[item].endTime,
               location: data[item].location,
-              description: data[item].description
+              description: data[item].description,
+              host: data[item].host
             });
           }
 
@@ -106,7 +107,8 @@ function App() {
       'endDate': eventDetails.endDate,
       'endTime': eventDetails.endTime,
       'location': eventDetails.location,
-      'description': eventDetails.description
+      'description': eventDetails.description,
+      'host': eventDetails.host
     })
   }
 
@@ -118,7 +120,7 @@ function App() {
         <Route path='/' element={<Home displayName={user.displayName} />} />
         <Route path='/register' element={<Register registerUser={registerUser}/>} />
         <Route path='/login' element={<LogIn />} />
-        <Route path='/createEvent' element={<CreateEvent addEvent={addEvent}/>} />
+        <Route path='/createEvent' element={<CreateEvent addEvent={addEvent} fullName={user.displayName}/>} />
         <Route path='/events' element={<Events events={user.events} userID={user.userID} />} />
         <Route path='/eventDetails/:eventID' element={<EventDetails events={user.events} userID={user.userID} />} />
         <Route path='/signUp/:userID/:eventID' element={<SignUp />} />

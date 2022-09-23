@@ -39,7 +39,7 @@ function Register({ registerUser }) {
         ).then(() => {
             // check for any auth errors
             // pass the firstName back up to App.js so it can hold data at the top level
-            registerUser(registrationInfo.firstName);
+            registerUser(registrationInfo.fullName);
         }).catch(error => {
             if (error.message) {
                 setRegistrationForm({ ...registrationForm, 'errorMessage': error.message })

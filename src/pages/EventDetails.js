@@ -44,7 +44,7 @@ function EventDetails({ events, userID }) {
                         <div className="detailsTextContainer">
                             <h3><span className="bold">Details</span></h3>
                             <p><FaUsers /> 4 people responded <Link to={`/guestList/${userID}/${event.eventID}`}>Guest List</Link></p>
-                            <p><FaUser /> Event Created by <span className="bold">{userID}</span></p>
+                            <p><FaUser /> Event Created by <span className="bold">{event.host}</span></p>
                             <p><ImLocation /><span className="bold">{event.location}</span></p>
                             {event.description ? <p>{event.description}</p> : <p><span className="grey">No details yet</span></p>}
                         </div>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 
-function CreateEvent({ addEvent }) {
+function CreateEvent({ addEvent, fullName }) {
     const [createEventForm, setCreateEventForm] = useState({
         eventName: '',
         startDate: '',
@@ -11,9 +11,10 @@ function CreateEvent({ addEvent }) {
         endDate: '',
         endTime: '',
         location: '',
-        description: ''
+        description: '',
+        host: fullName
     })
-
+console.log(createEventForm);
     const [currentDate, setCurrentDate] = useState('')
 
     const handleChange = (e) => {
@@ -115,6 +116,7 @@ function CreateEvent({ addEvent }) {
                         name="location"
                         id="location"
                         placeholder="Location"
+                        required
                         onChange={handleChange}
                         value={createEventForm.location}
                     />
