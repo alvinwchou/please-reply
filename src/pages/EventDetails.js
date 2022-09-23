@@ -45,17 +45,17 @@ function EventDetails() {
                         <h3>{new Date(`'${event.startDate}'`).toDateString()} {event.startTime && `AT ${event.startTime}`} {(event.endDate || event.endTime) && '-'} {event.endDate && new Date(`'${event.endDate}'`).toDateString()} {event.endDate && 'AT'} {event.endTime && `${event.endTime}`}</h3>
                         <h3><span className="grey">{event.location}</span></h3>
                         <div className="eventDetailsOptions">
-                            <Link to={`/rsvp/${userID}/${event.eventID}`} className="btn" >Going</Link>
+                            <Link to={`/rsvp/${userID}/${eventID}`} className="btn" >Going</Link>
                             <button className="btn">Invite</button>
                             <button className="btn">Edit</button>
-                            <button className="btn" onClick={() => deleteEvent(event.eventID)}>Delete</button>
+                            <button className="btn" onClick={() => deleteEvent(eventID)}>Delete</button>
                         </div>
                     </div>
                 </div>
                 <br></br>
                 <div className="detailsTextContainer">
                     <h3><span className="bold">Details</span></h3>
-                    <p><FaUsers /> 4 people responded <Link to={`/guestList/${userID}/${event.eventID}`}>Guest List</Link></p>
+                    <p><FaUsers /> 4 people responded <Link to={`/guestList/${userID}/${eventID}`}>Guest List</Link></p>
                     <p><FaUser /> Event Created by <span className="bold">{event.host}</span></p>
                     <p><ImLocation /><span className="bold">{event.location}</span></p>
                     {event.description ? <p>{event.description}</p> : <p><span className="grey">No details yet</span></p>}
