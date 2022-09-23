@@ -1,18 +1,30 @@
 // RSVP.js
 
-import { getDatabase, push, ref } from "firebase/database";
+import { getDatabase, onValue, push, ref } from "firebase/database";
+import { useEffect } from "react";
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import firebase from "../firebase";
 
-function RSVP({events}) {
+function RSVP() {
     const [rsvpForm, setRsvpForm] = useState({
         name: '',
         email: ''
     })
+    const [event, setEvent] = useState([])
 
     const { userID: userID } = useParams();
     const { eventID: eventID } = useParams();
+
+    useEffect(() => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `events/${userID}/${eventID}`)
+
+        onValue(dbRef, res =>{
+            const data = res.val();
+            setEvent(data)
+        })
+    }, [])
 
     const handleChange = (e) => {
         const itemName = e.target.name;
@@ -42,15 +54,11 @@ function RSVP({events}) {
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>RSVP</legend>
-                    {events && events.filter(event => event.eventID === eventID).map(event => {
-                        return (
-                            <div className="rsvpFromHeader">
-                                <p>{new Date(`'${event.startDate}'`).toDateString()}</p>
-                                <p className="eventName">{event.eventName}</p>
-                                <p>{event.location}</p>
-                            </div>
-                        )
-                    })}
+                    <div className="rsvpFromHeader">
+                        <p>{new Date(`'${event.startDate}'`).toDateString()}</p>
+                        <p className="eventName">{event.eventName}</p>
+                        <p>{event.location}</p>
+                    </div>
                     <label htmlFor="name">Name</label>
                     <input
                         type="text"
