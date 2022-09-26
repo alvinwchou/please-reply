@@ -312,6 +312,11 @@ fieldset .btn:hover {
   background-color: #be1834;
 }
 
+.disable-link {
+  pointer-events: none;
+  opacity: 0.25;
+}
+
 .navigation a:hover {
   color: #e41e3f;
 }
@@ -436,6 +441,10 @@ fieldset button {
 }
 
 .createEvent {
+  padding: 2rem;
+}
+
+.editEvent {
   padding: 2rem;
 }
 

@@ -8,12 +8,13 @@ import { auth, } from './firebase.js';
 import { useEffect, useState } from 'react';
 import './styles/styles.css'
 import CreateEvent from './pages/CreateEvent';
-import { getDatabase, ref, push, onValue } from 'firebase/database';
+import { getDatabase, ref, push, onValue, update } from 'firebase/database';
 import firebase from './firebase';
 import Events from './pages/Events';
 import RSVP from './pages/RSVP';
 import GuestList from './pages/GuestList';
 import EventDetails from './pages/EventDetails';
+import EditEvent from './pages/EditEvent';
 
 
 function App() {
@@ -113,6 +114,21 @@ function App() {
     })
   }
 
+  const editEvent = (eventDetails, eventID) => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database, `events/${user.user.uid}/${eventID}`)
+    update(dbRef, {
+      'eventName': eventDetails.eventName,
+      'startDate': eventDetails.startDate,
+      'startTime': eventDetails.startTime,
+      'endDate': eventDetails.endDate,
+      'endTime': eventDetails.endTime,
+      'location': eventDetails.location,
+      'description': eventDetails.description,
+      'host': eventDetails.host
+    })
+  }
+
   return (
     <div className="App">
       <Navigation displayName={user.displayName} logoutUser={logoutUser}/>
@@ -124,6 +140,7 @@ function App() {
         <Route path='/createEvent' element={<CreateEvent addEvent={addEvent} fullName={user.displayName}/>} />
         <Route path='/events' element={<Events events={user.events} currentUserID={user.userID} />} />
         <Route path='/eventDetails/:userID/:eventID' element={<EventDetails currentUserID={user.userID}/>} />
+        <Route path='/eventDetails/:userID/:eventID/edit' element={<EditEvent editEvent={editEvent} fullName={user.displayName}/>} />
         <Route path='/rsvp/:userID/:eventID' element={<RSVP />} />
         <Route path='/guestList/:userID/:eventID' element={<GuestList />} />
       </Routes>

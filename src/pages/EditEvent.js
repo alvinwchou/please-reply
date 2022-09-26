@@ -1,10 +1,12 @@
-// CreateEvent.js
+// EditEvent.js
 
+import { getDatabase, onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import firebase from "../firebase";
 
-function CreateEvent({ addEvent, fullName }) {
-    const [createEventForm, setCreateEventForm] = useState({
+function EditEvent({ editEvent, fullName }) {
+    const [editEventForm, setEditEventForm] = useState({
         eventName: '',
         startDate: '',
         startTime: '',
@@ -15,13 +17,27 @@ function CreateEvent({ addEvent, fullName }) {
         host: fullName
     })
 
+    const { userID: userID } = useParams();
+    const { eventID: eventID } = useParams();
+
+    useEffect(() => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `events/${userID}/${eventID}`)
+
+        onValue(dbRef, res =>{
+            const data = res.val();
+            
+            setEditEventForm(data)
+        })
+    }, [])
+
     const [currentDate, setCurrentDate] = useState('')
 
     const handleChange = (e) => {
         const itemName = e.target.name;
         const itemValue = e.target.value;
 
-        setCreateEventForm({...createEventForm, [itemName]: itemValue})
+        setEditEventForm({...editEventForm, [itemName]: itemValue})
     }
 
     const navigate = useNavigate();
@@ -29,9 +45,9 @@ function CreateEvent({ addEvent, fullName }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        addEvent(createEventForm)
+        editEvent(editEventForm, eventID)
 
-        setCreateEventForm({
+        setEditEventForm({
             eventName: '',
             startDate: '',
             startTime: '',
@@ -61,10 +77,10 @@ function CreateEvent({ addEvent, fullName }) {
     }, [])
 
     return (
-        <div className="createEvent">
+        <div className="editEvent">
             <form onSubmit={handleSubmit}>
                 <fieldset>
-                    <legend>Create Event</legend>
+                    <legend>Edit Event</legend>
                     <label htmlFor="eventName">Event Name</label>
                     <input
                         type="text"
@@ -73,7 +89,7 @@ function CreateEvent({ addEvent, fullName }) {
                         placeholder="Event Name"
                         required
                         onChange={handleChange}
-                        value={createEventForm.eventName}
+                        value={editEventForm.eventName}
                     />
                     <label htmlFor="startDate">Start Date</label>
                     <input
@@ -83,7 +99,7 @@ function CreateEvent({ addEvent, fullName }) {
                         min={currentDate.today}
                         required
                         onChange={handleChange}
-                        value={createEventForm.startDate}
+                        value={editEventForm.startDate}
                     />
                     <label htmlFor="startTime">Start Time</label>
                     <input
@@ -91,16 +107,16 @@ function CreateEvent({ addEvent, fullName }) {
                         name="startTime"
                         id="startTime"
                         onChange={handleChange}
-                        value={createEventForm.startTime}
+                        value={editEventForm.startTime}
                     />
                     <label htmlFor="endDate">End Date</label>
                     <input
                         type="date"
                         name="endDate"
                         id="endDate"
-                        min={createEventForm.startDate}
+                        min={editEventForm.startDate}
                         onChange={handleChange}
-                        value={createEventForm.endDate}
+                        value={editEventForm.endDate}
                     />
                     <label htmlFor="endTime">End Time</label>
                     <input
@@ -108,7 +124,7 @@ function CreateEvent({ addEvent, fullName }) {
                         name="endTime"
                         id="endTime"
                         onChange={handleChange}
-                        value={createEventForm.endTime}
+                        value={editEventForm.endTime}
                     />
                     <label htmlFor="location">Location</label>
                     <input
@@ -118,7 +134,7 @@ function CreateEvent({ addEvent, fullName }) {
                         placeholder="Location"
                         required
                         onChange={handleChange}
-                        value={createEventForm.location}
+                        value={editEventForm.location}
                     />
                     <label htmlFor="description">Description</label>
                     <textarea
@@ -126,13 +142,13 @@ function CreateEvent({ addEvent, fullName }) {
                         id="description"
                         placeholder="Description"
                         onChange={handleChange}
-                        value={createEventForm.description}
+                        value={editEventForm.description}
                     />
-                    <button className="btn">Create Event</button>
+                    <button className="btn">Edit Event</button>
                 </fieldset>
             </form>
         </div>
     )
 }
 
-export default CreateEvent
+export default EditEvent

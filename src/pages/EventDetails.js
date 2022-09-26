@@ -60,10 +60,10 @@ function EventDetails({currentUserID}) {
                             {currentUserID !== userID &&
                                 <Link to={`/rsvp/${userID}/${eventID}`} className="btn" >Going</Link>
                             }
-                            <button className="btn">Invite</button>
+                            <button className="btn disable-link" >Invite</button>
                             {currentUserID === userID && <>
                                 {/* <Link to={`/guestList/${userID}/${eventID}`} className="btn">Guest List</Link> */}
-                                <button className="btn">Edit</button>
+                                <Link to={`/eventDetails/${userID}/${eventID}/edit`} className="btn">Edit</Link>
                                 <button className="btn" onClick={() => deleteEvent(eventID)}>Delete</button>
                             </>
                             }
@@ -73,10 +73,9 @@ function EventDetails({currentUserID}) {
                 <br></br>
                 <div className="detailsTextContainer">
                     <h3><span className="bold">Details</span></h3>
-                    <p className="responded" onClick={handleClick}><FaUsers /> {event.guestList && Object.keys(event.guestList).length} responded</p>
-                    {showGuestList && <div className="guestList">
+                    <p className="responded" onClick={handleClick}><FaUsers /> {event.guestList ? Object.keys(event.guestList).length : "0"} responded</p>
+                    {showGuestList && event.guestListNames.length !== 0 && <div className="guestList">
                             {event.guestListNames && event.guestListNames.map(guestName => {
-                                console.log(guestName)
                                 return (
                                     <p>{guestName}</p>
                                 )
