@@ -8,7 +8,7 @@ import { ImLocation } from "react-icons/im"
 import { useEffect } from "react"
 import { useState } from "react"
 
-function EventDetails() {
+function EventDetails({currentUserID}) {
     const [event, setEvent] = useState([])
     const [showGuestList, setShowGuestList] = useState(false)
 
@@ -57,11 +57,16 @@ function EventDetails() {
                         <h3>{new Date(`'${event.startDate}'`).toDateString()} {event.startTime && `AT ${event.startTime}`} {(event.endDate || event.endTime) && '-'} {event.endDate && new Date(`'${event.endDate}'`).toDateString()} {event.endDate && 'AT'} {event.endTime && `${event.endTime}`}</h3>
                         <h3><span className="grey">{event.location}</span></h3>
                         <div className="eventDetailsOptions">
-                            <Link to={`/rsvp/${userID}/${eventID}`} className="btn" >Going</Link>
+                            {currentUserID !== userID &&
+                                <Link to={`/rsvp/${userID}/${eventID}`} className="btn" >Going</Link>
+                            }
                             <button className="btn">Invite</button>
-                            {/* <Link to={`/guestList/${userID}/${eventID}`} className="btn">Guest List</Link> */}
-                            <button className="btn">Edit</button>
-                            <button className="btn" onClick={() => deleteEvent(eventID)}>Delete</button>
+                            {currentUserID === userID && <>
+                                {/* <Link to={`/guestList/${userID}/${eventID}`} className="btn">Guest List</Link> */}
+                                <button className="btn">Edit</button>
+                                <button className="btn" onClick={() => deleteEvent(eventID)}>Delete</button>
+                            </>
+                            }
                         </div>
                     </div>
                 </div>

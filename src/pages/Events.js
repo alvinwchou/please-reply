@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom"
 import { BsPersonCircle } from "react-icons/bs"
 
-function Events({ events, userID }) {
+function Events({ events, currentUserID }) {
     return (
         <div className="events">
             <div className="eventsHeading">
@@ -13,7 +13,7 @@ function Events({ events, userID }) {
             <div className="eventsGallery">
                 {events && events.map(event => {
                     return (
-                        <Link to={`/eventDetails/${userID}/${event.eventID}`} className="eventCard" key={event.eventID}>
+                        <Link to={`/eventDetails/${currentUserID}/${event.eventID}`} className="eventCard" key={event.eventID}>
                             <p>{new Date(`'${event.startDate}'`).toDateString()}</p>
                             <p className="eventName">{event.eventName}</p>
                             <p>{event.location}</p>

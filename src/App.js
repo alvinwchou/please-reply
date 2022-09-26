@@ -122,8 +122,8 @@ function App() {
         <Route path='/register' element={<Register registerUser={registerUser}/>} />
         <Route path='/login' element={<LogIn />} />
         <Route path='/createEvent' element={<CreateEvent addEvent={addEvent} fullName={user.displayName}/>} />
-        <Route path='/events' element={<Events events={user.events} userID={user.userID} />} />
-        <Route path='/eventDetails/:userID/:eventID' element={<EventDetails />} />
+        <Route path='/events' element={<Events events={user.events} currentUserID={user.userID} />} />
+        <Route path='/eventDetails/:userID/:eventID' element={<EventDetails currentUserID={user.userID}/>} />
         <Route path='/rsvp/:userID/:eventID' element={<RSVP />} />
         <Route path='/guestList/:userID/:eventID' element={<GuestList />} />
       </Routes>
