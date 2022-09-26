@@ -10,6 +10,7 @@ import { useState } from "react"
 
 function EventDetails() {
     const [event, setEvent] = useState([])
+    const [showGuestList, setShowGuestList] = useState(false)
 
     const { userID: userID } = useParams();
     const { eventID: eventID } = useParams();
@@ -20,7 +21,14 @@ function EventDetails() {
 
         onValue(dbRef, res =>{
             const data = res.val();
-            setEvent(data)
+
+            //creating an array of guest names
+            let guestListNames = [];
+            for (const key in data.guestList) {
+                guestListNames.push(data.guestList[key].guestName)
+            }
+            
+            setEvent({...data, guestListNames: guestListNames})
         })
     }, [])
 
@@ -35,6 +43,10 @@ function EventDetails() {
         navigate('/events')
     }
 
+    const handleClick = () => {
+        setShowGuestList(!showGuestList)
+    }
+
     return (
         <div className="eventDetails">
             <div className="eventCard" key={event.eventID}>
@@ -47,6 +59,7 @@ function EventDetails() {
                         <div className="eventDetailsOptions">
                             <Link to={`/rsvp/${userID}/${eventID}`} className="btn" >Going</Link>
                             <button className="btn">Invite</button>
+                            {/* <Link to={`/guestList/${userID}/${eventID}`} className="btn">Guest List</Link> */}
                             <button className="btn">Edit</button>
                             <button className="btn" onClick={() => deleteEvent(eventID)}>Delete</button>
                         </div>
@@ -55,7 +68,16 @@ function EventDetails() {
                 <br></br>
                 <div className="detailsTextContainer">
                     <h3><span className="bold">Details</span></h3>
-                    <p><FaUsers /> 4 people responded <Link to={`/guestList/${userID}/${eventID}`}>Guest List</Link></p>
+                    <p className="responded" onClick={handleClick}><FaUsers /> {event.guestList && Object.keys(event.guestList).length} responded</p>
+                    {showGuestList && <div className="guestList">
+                            {event.guestListNames && event.guestListNames.map(guestName => {
+                                console.log(guestName)
+                                return (
+                                    <p>{guestName}</p>
+                                )
+                            })}
+                        </div>
+                    }
                     <p><FaUser /> Event Created by <span className="bold">{event.host}</span></p>
                     <p><ImLocation /><span className="bold">{event.location}</span></p>
                     {event.description ? <p>{event.description}</p> : <p><span className="grey">No details yet</span></p>}

@@ -516,7 +516,7 @@ fieldset button {
   padding: 0.5rem;
   border-top: 1px solid rgb(200, 200, 200);
 }
-.eventDetails .eventDetailsOptions button {
+.eventDetails .eventDetailsOptions a, .eventDetails .eventDetailsOptions .btn {
   margin-left: 0.5rem;
 }
 .eventDetails .eventDetailsOptions a:hover, .eventDetails .eventDetailsOptions .btn:hover {
@@ -524,14 +524,26 @@ fieldset button {
 }
 .eventDetails .detailsTextContainer {
   border: 1px solid rgb(200, 200, 200);
-  padding: 1rem;
+  padding: 0.5rem 0;
 }
 .eventDetails .detailsTextContainer > * {
-  padding-bottom: 1rem;
+  padding: 0.5rem 1rem;
 }
 .eventDetails .detailsTextContainer svg {
   margin-right: 0.5rem;
   color: #e41e3f;
+}
+.eventDetails .responded {
+  cursor: pointer;
+}
+.eventDetails .responded:hover {
+  background-color: rgb(241, 241, 241);
+}
+.eventDetails .guestList {
+  max-width: 400px;
+  border: 1px solid;
+  margin: 0 auto;
+  border-radius: 5px;
 }
 
 .rsvp {

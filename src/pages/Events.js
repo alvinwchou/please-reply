@@ -17,7 +17,7 @@ function Events({ events, userID }) {
                             <p>{new Date(`'${event.startDate}'`).toDateString()}</p>
                             <p className="eventName">{event.eventName}</p>
                             <p>{event.location}</p>
-                            <p><BsPersonCircle /> 4 attendees</p>
+                            <p><BsPersonCircle /> {Object.keys(event.guestList).length} responded</p>
                         </Link>
                     )
                 })}

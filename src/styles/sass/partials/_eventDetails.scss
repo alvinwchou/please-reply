@@ -30,10 +30,8 @@
         justify-content: end;
         padding: 0.5rem;
         border-top: 1px solid rgb(200, 200, 200);
-        button {
-            margin-left: 0.5rem;
-        }
         a, .btn {
+            margin-left: 0.5rem;
             &:hover {
                 background-color: $primary;
             }
@@ -41,14 +39,25 @@
     }
     .detailsTextContainer {
         border: 1px solid rgb(200, 200, 200);
-        padding: 1rem;
+        padding: 0.5rem 0;
         & > * {
-            padding-bottom: 1rem;
+            padding: 0.5rem 1rem;
         }
         svg {
             margin-right: 0.5rem;
             color: $primary;
         }
     }
-    
+    .responded {
+        cursor: pointer;
+        &:hover {
+            background-color: $greyLight;;
+        }
+    }
+    .guestList {
+        max-width: 400px;
+        border: 1px solid;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
 }

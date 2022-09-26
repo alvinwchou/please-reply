@@ -64,7 +64,8 @@ function App() {
               endTime: data[item].endTime,
               location: data[item].location,
               description: data[item].description,
-              host: data[item].host
+              host: data[item].host,
+              guestList: data[item].guestList
             });
           }
 
