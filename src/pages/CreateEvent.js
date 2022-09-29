@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { set } from "firebase/database";
 
 function CreateEvent({ addEvent, fullName }) {
     const [createEventForm, setCreateEventForm] = useState({
@@ -12,6 +14,8 @@ function CreateEvent({ addEvent, fullName }) {
         endTime: '',
         location: '',
         description: '',
+        lat: '',
+        lng: '',
         host: fullName
     })
 
@@ -59,6 +63,18 @@ function CreateEvent({ addEvent, fullName }) {
         setCurrentDate({ ...currentDate, 'today': today, 'time': time})
 
     }, [])
+
+    const handleSelect = async (value) => {
+        const results = await geocodeByAddress(value)
+        const latLng = await getLatLng(results[0])
+
+        setCreateEventForm({...createEventForm, location: value, lat: latLng.lat, lng: latLng.lng})
+    }
+
+    const handleChangePlaces = (e) => {
+        setCreateEventForm({...createEventForm, location: e})
+    }
+
 
     return (
         <div className="createEvent">
@@ -128,6 +144,31 @@ function CreateEvent({ addEvent, fullName }) {
                         onChange={handleChange}
                         value={createEventForm.description}
                     />
+            <PlacesAutocomplete onChange={handleChangePlaces} value={createEventForm.location} onSelect={handleSelect}>
+                {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+                <div>
+                    <p>Lat: {createEventForm.lat}</p>
+                    <p>Lng: {createEventForm.lng}</p>
+
+                    <input {...getInputProps({ type: "text", name: "location", id: "location", placeholder: "Location"})} />
+
+                    <div>
+                        {loading && <div>...loading</div>}
+                        {suggestions.map( suggestions => {
+                            const style = {
+                                backgroundColor: suggestions.active ? '#e41e3f' : '#fff',
+                                color:  suggestions.active ? '#fff' : '#000'
+                            }
+                            return (
+                                <div {...getSuggestionItemProps(suggestions, { style })} >
+                                    {suggestions.description}
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>)
+                }
+            </PlacesAutocomplete>
                     <button className="btn">Create Event</button>
                 </fieldset>
             </form>

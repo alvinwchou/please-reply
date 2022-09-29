@@ -11,6 +11,7 @@ import { useState } from "react"
 function EventDetails({currentUserID}) {
     const [event, setEvent] = useState([])
     const [showGuestList, setShowGuestList] = useState(false)
+    const [showInviteLink, setShowInviteLink] = useState(false)
 
     const { userID: userID } = useParams();
     const { eventID: eventID } = useParams();
@@ -54,13 +55,13 @@ function EventDetails({currentUserID}) {
                     <div className="wrapper">
                                     <h1>Event Details</h1>
                         <h2>{event.eventName}</h2>
-                        <h3>{new Date(`'${event.startDate}'`).toDateString()} {event.startTime && `AT ${event.startTime}`} {(event.endDate || event.endTime) && '-'} {event.endDate && new Date(`'${event.endDate}'`).toDateString()} {event.endDate && 'AT'} {event.endTime && `${event.endTime}`}</h3>
+                        <h3>{new Date(`'${event.startDate}'`).toDateString()} {event.startTime && `AT ${event.startTime}`} {(event.endDate || event.endTime) && '-'} {event.endDate && new Date(`'${event.endDate}'`).toDateString()} {event.endDate && event.endTime && 'AT'} {event.endTime && `${event.endTime}`}</h3>
                         <h3><span className="grey">{event.location}</span></h3>
                         <div className="eventDetailsOptions">
                             {currentUserID !== userID &&
                                 <Link to={`/rsvp/${userID}/${eventID}`} className="btn" >Going</Link>
                             }
-                            <button className="btn disable-link" >Invite</button>
+                            <button className="btn" onClick={() => setShowInviteLink(!showInviteLink)}>Invite</button>
                             {currentUserID === userID && <>
                                 {/* <Link to={`/guestList/${userID}/${eventID}`} className="btn">Guest List</Link> */}
                                 <Link to={`/eventDetails/${userID}/${eventID}/edit`} className="btn">Edit</Link>
@@ -68,6 +69,7 @@ function EventDetails({currentUserID}) {
                             </>
                             }
                         </div>
+                        {showInviteLink && <p>https://pleasereply.netlify.app/eventDetails/{userID}/{eventID}</p>}
                     </div>
                 </div>
                 <br></br>
