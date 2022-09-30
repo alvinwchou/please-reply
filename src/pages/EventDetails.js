@@ -50,7 +50,7 @@ function EventDetails({currentUserID}) {
 
     return (
         <div className="eventDetails">
-            <div className="eventCard" key={event.eventID}>
+            <div className="eventCard">
                 <div className="headingTextContainer">
                     <div className="wrapper">
                                     <h1>Event Details</h1>
@@ -73,21 +73,29 @@ function EventDetails({currentUserID}) {
                     </div>
                 </div>
                 <br></br>
-                <div className="detailsTextContainer">
-                    <h3><span className="bold">Details</span></h3>
-                    <p className="responded" onClick={handleClick}><FaUsers /> {event.guestList ? Object.keys(event.guestList).length : "0"} responded</p>
-                    {showGuestList && event.guestListNames.length !== 0 && <div className="guestList">
-                            {event.guestListNames && event.guestListNames.map(guestName => {
-                                return (
-                                    <p>{guestName}</p>
-                                )
-                            })}
+                <div className="detailsContainer">
+                    <div>
+                        <div className="detailsTextContainer">
+                            <h3><span className="bold">Details</span></h3>
+                            <p className="responded" onClick={handleClick}><FaUsers /> {event.guestList ? Object.keys(event.guestList).length : "0"} responded</p>
+                            {showGuestList && event.guestListNames.length !== 0 && <div className="guestList">
+                                    {event.guestListNames && event.guestListNames.map(guestName => {
+                                        return (
+                                            <p>{guestName}</p>
+                                        )
+                                    })}
+                                </div>
+                            }
+                            <p><FaUser /> Event Created by <span className="bold">{event.host}</span></p>
+                            <p><ImLocation /><span className="bold">{event.location}</span></p>
+                            {event.description ? <p>{event.description}</p> : <p><span className="grey">No details yet</span></p>}
                         </div>
-                    }
-                    <p><FaUser /> Event Created by <span className="bold">{event.host}</span></p>
-                    <p><ImLocation /><span className="bold">{event.location}</span></p>
-                    {event.description ? <p>{event.description}</p> : <p><span className="grey">No details yet</span></p>}
+                    </div>
+                    <div className="detailsMapContainer">
+                        <iframe src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyD02q8jzNTmJJEBOY0ulIxV5hipQHJvSlM&q=${event.location}`}></iframe>
+                    </div>
                 </div>
+
             </div>
         </div>
     )

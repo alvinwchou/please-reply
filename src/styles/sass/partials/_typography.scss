@@ -24,6 +24,10 @@ fieldset button {
     color: white;
 }
 
+input {
+    font-family: inherit;
+}
+
 .formError {
     color: $primary;
 }

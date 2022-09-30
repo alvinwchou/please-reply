@@ -269,7 +269,7 @@ button {
 }
 
 input {
-  font-family: inherit;
+  width: 100%;
 }
 
 svg {
@@ -339,6 +339,10 @@ h1 {
 
 fieldset button {
   color: white;
+}
+
+input {
+  font-family: inherit;
 }
 
 .formError {
@@ -502,18 +506,11 @@ fieldset button {
   border-bottom: 1px solid rgb(200, 200, 200);
   position: relative;
 }
-.eventDetails .wrapper,
-.eventDetails .detailsTextContainer {
+.eventDetails .wrapper {
   width: min(90%, 1000px);
   background-color: white;
   margin: 0 auto;
   border-radius: 5px;
-}
-.eventDetails .wrapper {
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
 }
 .eventDetails .eventDetailsOptions {
   display: -webkit-box;
@@ -531,9 +528,23 @@ fieldset button {
 .eventDetails .eventDetailsOptions a:hover, .eventDetails .eventDetailsOptions .btn:hover {
   background-color: #e41e3f;
 }
+.eventDetails .detailsContainer {
+  width: min(90%, 1000px);
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+}
+.eventDetails .detailsContainer > div:first-child {
+  width: 65%;
+}
 .eventDetails .detailsTextContainer {
+  width: 100%;
+  background-color: white;
   border: 1px solid rgb(200, 200, 200);
   padding: 0.5rem 0;
+  border-radius: 5px;
 }
 .eventDetails .detailsTextContainer > * {
   padding: 0.5rem 1rem;
@@ -541,6 +552,14 @@ fieldset button {
 .eventDetails .detailsTextContainer svg {
   margin-right: 0.5rem;
   color: #e41e3f;
+}
+.eventDetails .detailsMapContainer {
+  width: 35%;
+}
+.eventDetails .detailsMapContainer iframe {
+  aspect-ratio: 1/1;
+  width: 100%;
+  border-radius: 5px;
 }
 .eventDetails .responded {
   cursor: pointer;

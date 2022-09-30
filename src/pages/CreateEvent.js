@@ -14,8 +14,6 @@ function CreateEvent({ addEvent, fullName }) {
         endTime: '',
         location: '',
         description: '',
-        lat: '',
-        lng: '',
         host: fullName
     })
 
@@ -64,17 +62,16 @@ function CreateEvent({ addEvent, fullName }) {
 
     }, [])
 
-    const handleSelect = async (value) => {
-        const results = await geocodeByAddress(value)
-        const latLng = await getLatLng(results[0])
+    // const handleSelect = async (value) => {
+    //     const results = await geocodeByAddress(value)
+    //     const latLng = await getLatLng(results[0])
 
-        setCreateEventForm({...createEventForm, location: value, lat: latLng.lat, lng: latLng.lng})
-    }
+    //     setCreateEventForm({...createEventForm, location: value, lat: latLng.lat, lng: latLng.lng})
+    // }
 
     const handleChangePlaces = (e) => {
         setCreateEventForm({...createEventForm, location: e})
     }
-
 
     return (
         <div className="createEvent">
@@ -127,7 +124,7 @@ function CreateEvent({ addEvent, fullName }) {
                         value={createEventForm.endTime}
                     />
                     <label htmlFor="location">Location</label>
-                    <input
+                    {/* <input
                         type="text"
                         name="location"
                         id="location"
@@ -135,23 +132,11 @@ function CreateEvent({ addEvent, fullName }) {
                         required
                         onChange={handleChange}
                         value={createEventForm.location}
-                    />
-                    <label htmlFor="description">Description</label>
-                    <textarea
-                        name="description"
-                        id="description"
-                        placeholder="Description"
-                        onChange={handleChange}
-                        value={createEventForm.description}
-                    />
-            <PlacesAutocomplete onChange={handleChangePlaces} value={createEventForm.location} onSelect={handleSelect}>
+                    /> */}
+                    <PlacesAutocomplete onChange={handleChangePlaces} value={createEventForm.location} >
                 {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
                 <div>
-                    <p>Lat: {createEventForm.lat}</p>
-                    <p>Lng: {createEventForm.lng}</p>
-
                     <input {...getInputProps({ type: "text", name: "location", id: "location", placeholder: "Location"})} />
-
                     <div>
                         {loading && <div>...loading</div>}
                         {suggestions.map( suggestions => {
@@ -169,6 +154,16 @@ function CreateEvent({ addEvent, fullName }) {
                 </div>)
                 }
             </PlacesAutocomplete>
+                    <label htmlFor="description">Description</label>
+                    <textarea
+                        name="description"
+                        id="description"
+                        placeholder="Description"
+                        onChange={handleChange}
+                        value={createEventForm.description}
+                    />
+            
+
                     <button className="btn">Create Event</button>
                 </fieldset>
             </form>
