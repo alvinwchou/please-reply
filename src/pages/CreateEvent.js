@@ -62,13 +62,6 @@ function CreateEvent({ addEvent, fullName }) {
 
     }, [])
 
-    // const handleSelect = async (value) => {
-    //     const results = await geocodeByAddress(value)
-    //     const latLng = await getLatLng(results[0])
-
-    //     setCreateEventForm({...createEventForm, location: value, lat: latLng.lat, lng: latLng.lng})
-    // }
-
     const handleChangePlaces = (e) => {
         setCreateEventForm({...createEventForm, location: e})
     }
@@ -136,7 +129,7 @@ function CreateEvent({ addEvent, fullName }) {
                     <PlacesAutocomplete onChange={handleChangePlaces} value={createEventForm.location} >
                 {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
                 <div>
-                    <input {...getInputProps({ type: "text", name: "location", id: "location", placeholder: "Location"})} />
+                    <input {...getInputProps({ type: "text", name: "location", id: "location", placeholder: "Location"})} required />
                     <div>
                         {loading && <div>...loading</div>}
                         {suggestions.map( suggestions => {

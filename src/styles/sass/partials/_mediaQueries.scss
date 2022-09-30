@@ -1,0 +1,19 @@
+// mediaQueries.scss
+
+@media (max-width: 1000px) {
+    //eventDetails
+    .eventDetails {
+        .detailsContainer {
+            flex-direction: column;
+            & > div:first-child {
+                    width: 100%;
+                }
+        }
+        .detailsMapContainer {
+            width: 100%;
+            iframe {
+                aspect-ratio: 1/0.5;
+            }
+        }
+    }
+}

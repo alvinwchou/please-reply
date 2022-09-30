@@ -77,7 +77,7 @@ function EventDetails({currentUserID}) {
                     <div>
                         <div className="detailsTextContainer">
                             <h3><span className="bold">Details</span></h3>
-                            <p className="responded" onClick={handleClick}><FaUsers /> {event.guestList ? Object.keys(event.guestList).length : "0"} responded</p>
+                            <p className="responded" onClick={handleClick}><FaUsers />{event.guestList ? Object.keys(event.guestList).length : "0"} responded</p>
                             {showGuestList && event.guestListNames.length !== 0 && <div className="guestList">
                                     {event.guestListNames && event.guestListNames.map(guestName => {
                                         return (
@@ -86,7 +86,7 @@ function EventDetails({currentUserID}) {
                                     })}
                                 </div>
                             }
-                            <p><FaUser /> Event Created by <span className="bold">{event.host}</span></p>
+                            <p><FaUser />Event Created by <span className="bold">{event.host}</span></p>
                             <p><ImLocation /><span className="bold">{event.location}</span></p>
                             {event.description ? <p>{event.description}</p> : <p><span className="grey">No details yet</span></p>}
                         </div>

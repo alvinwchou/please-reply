@@ -572,6 +572,7 @@ input {
   border: 1px solid;
   margin: 0 auto;
   border-radius: 5px;
+  padding: 0.5rem 2.5rem;
 }
 
 .rsvp {
@@ -579,4 +580,22 @@ input {
 }
 .rsvp .rsvpFromHeader {
   padding: 0 0 0.5rem 1rem;
+}
+
+@media (max-width: 1000px) {
+  .eventDetails .detailsContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .eventDetails .detailsContainer > div:first-child {
+    width: 100%;
+  }
+  .eventDetails .detailsMapContainer {
+    width: 100%;
+  }
+  .eventDetails .detailsMapContainer iframe {
+    aspect-ratio: 1/0.5;
+  }
 }
