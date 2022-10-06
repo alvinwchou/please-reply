@@ -92,10 +92,9 @@ function EventDetails({currentUserID}) {
                         </div>
                     </div>
                     <div className="detailsMapContainer">
-                        <iframe src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyD02q8jzNTmJJEBOY0ulIxV5hipQHJvSlM&q=${event.location}`}></iframe>
+                        <iframe src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&q=${event.location}`}></iframe>
                     </div>
                 </div>
-
             </div>
         </div>
     )
