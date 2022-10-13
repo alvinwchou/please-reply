@@ -1,5 +1,6 @@
 // RSVP.js
 
+import axios from "axios";
 import { getDatabase, onValue, push, ref } from "firebase/database";
 import { useEffect } from "react";
 import { useState } from "react"
@@ -35,19 +36,51 @@ function RSVP() {
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    // const handleSubmit = async(e) => {
+    //     e.preventDefault();
 
-        const database = getDatabase(firebase);
-        const dbRef = ref(database, `events/${userID}/${eventID}/guestList`)
+    //     try {
+    //         await axios.post('http://localhost:4000/send_mail', {
+    //             text: rsvpForm.name
+    //         })
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
 
-        push(dbRef, {
-            'guestName': rsvpForm.name,
-            'guestEmail': rsvpForm.email
-        })
+    //     // navigate(`/events`)
+    // }
 
-        navigate(`/events`)
-    }
+    	const handleSubmit = async (e) => {
+            e.preventDefault();
+
+            axios.post("http://localhost:4000/send_mail", {
+				text: rsvpForm.name
+			}).then(res => {
+                console.log('sent from RSVP.js')
+            }).catch(err => console.log('message not sent',err))
+
+
+		try {
+			await axios.post("http://localhost:4000/send_mail", {
+				text: rsvpForm.name
+			})
+		} catch (error) {
+			console.error(error)
+		}
+	}
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     const database = getDatabase(firebase);
+    //     const dbRef = ref(database, `events/${userID}/${eventID}/guestList`)
+
+    //     push(dbRef, {
+    //         'guestName': rsvpForm.name,
+    //         'guestEmail': rsvpForm.email
+    //     })
+
+    //     navigate(`/events`)
+    // }
 
     return (
         <div className="rsvp">
