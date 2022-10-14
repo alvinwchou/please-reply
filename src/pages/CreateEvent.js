@@ -132,13 +132,13 @@ function CreateEvent({ addEvent, fullName }) {
                     <input {...getInputProps({ type: "text", name: "location", id: "location", placeholder: "Location"})} required />
                     <div>
                         {loading && <div>...loading</div>}
-                        {suggestions.map( suggestions => {
+                        {suggestions.map( (suggestions, index) => {
                             const style = {
                                 backgroundColor: suggestions.active ? '#e41e3f' : '#fff',
                                 color:  suggestions.active ? '#fff' : '#000'
                             }
                             return (
-                                <div {...getSuggestionItemProps(suggestions, { style })} >
+                                <div key={index} {...getSuggestionItemProps(suggestions, { style })} >
                                     {suggestions.description}
                                 </div>
                             )

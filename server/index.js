@@ -47,7 +47,7 @@ app.post("/send_mail", cors(), (req,res) => {
                 console.log('success');
             }
         })
-
+        res.send('Successfully sent')
     })
 
 const PORT = process.env.PORT || 4000

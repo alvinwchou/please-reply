@@ -36,51 +36,25 @@ function RSVP() {
 
     const navigate = useNavigate();
 
-    // const handleSubmit = async(e) => {
-    //     e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    //     try {
-    //         await axios.post('http://localhost:4000/send_mail', {
-    //             text: rsvpForm.name
-    //         })
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
+        axios.post("http://localhost:4000/send_mail", {
+            text: rsvpForm.name
+        }).then(res => {
+            // if email was successfully sent then append name to guestList
+            console.log('message Sent', res)
+            const database = getDatabase(firebase);
+            const dbRef = ref(database, `events/${userID}/${eventID}/guestList`)
 
-    //     // navigate(`/events`)
-    // }
+            push(dbRef, {
+                'guestName': rsvpForm.name,
+                'guestEmail': rsvpForm.email
+            })
 
-    	const handleSubmit = async (e) => {
-            e.preventDefault();
-
-            axios.post("http://localhost:4000/send_mail", {
-				text: rsvpForm.name
-			}).then(res => {
-                console.log('sent from RSVP.js')
-            }).catch(err => console.log('message not sent',err))
-
-
-		try {
-			await axios.post("http://localhost:4000/send_mail", {
-				text: rsvpForm.name
-			})
-		} catch (error) {
-			console.error(error)
-		}
+            navigate(`/events`)
+        }).catch(err => console.log('message not sent',err))
 	}
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     const database = getDatabase(firebase);
-    //     const dbRef = ref(database, `events/${userID}/${eventID}/guestList`)
-
-    //     push(dbRef, {
-    //         'guestName': rsvpForm.name,
-    //         'guestEmail': rsvpForm.email
-    //     })
-
-    //     navigate(`/events`)
-    // }
 
     return (
         <div className="rsvp">
