@@ -44,6 +44,7 @@ function RSVP() {
         }).then(res => {
             // if email was successfully sent then append name to guestList
             console.log('message Sent', res)
+            console.log({firebase, userID, eventID})
             const database = getDatabase(firebase);
             const dbRef = ref(database, `events/${userID}/${eventID}/guestList`)
 
@@ -52,7 +53,7 @@ function RSVP() {
                 'guestEmail': rsvpForm.email
             })
 
-            navigate(`/events`)
+            navigate(`/eventDetails/${userID}/${eventID}`)
         }).catch(err => console.log('message not sent',err))
 	}
 
