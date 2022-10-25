@@ -7,6 +7,7 @@ import { FaUsers, FaUser } from "react-icons/fa"
 import { ImLocation } from "react-icons/im"
 import { useEffect } from "react"
 import { useState } from "react"
+import ModalInviteLink from "../components/ModalInviteLink"
 
 function EventDetails({currentUserID}) {
     const [event, setEvent] = useState([])
@@ -61,7 +62,13 @@ function EventDetails({currentUserID}) {
                             {currentUserID !== userID &&
                                 <Link to={`/rsvp/${userID}/${eventID}`} className="btn" >Going</Link>
                             }
-                            <button className="btn" onClick={() => setShowInviteLink(!showInviteLink)}>Invite</button>
+                            <button className="btn" onClick={() => {
+                                // setShowInviteLink(!showInviteLink)
+                                // remove below when we have emails working
+                                setShowInviteLink(true)
+                                navigator.clipboard.writeText(`https://pleasereply.netlify.app/eventDetails/${userID}/${eventID}`)
+                                setTimeout(() => setShowInviteLink(false), 1500)
+                                }}>Invite</button>
                             {currentUserID === userID && <>
                                 {/* <Link to={`/guestList/${userID}/${eventID}`} className="btn">Guest List</Link> */}
                                 <Link to={`/eventDetails/${userID}/${eventID}/edit`} className="btn">Edit</Link>
@@ -69,7 +76,7 @@ function EventDetails({currentUserID}) {
                             </>
                             }
                         </div>
-                        {showInviteLink && <p>https://pleasereply.netlify.app/eventDetails/{userID}/{eventID}</p>}
+                        
                     </div>
                 </div>
                 <br></br>
@@ -96,6 +103,7 @@ function EventDetails({currentUserID}) {
                     </div>
                 </div>
             </div>
+            {showInviteLink && <ModalInviteLink userID={userID} eventID={eventID} />}
         </div>
     )
 }
