@@ -40,7 +40,12 @@ function RSVP() {
         e.preventDefault();
 
         axios.post("http://localhost:4000/send_mail", {
-            text: rsvpForm.name
+            name: rsvpForm.name,
+            email: rsvpForm.email,
+            startDate: event.startDate,
+            eventName: event.eventName,
+            location: event.location,
+            url: `https://pleasereply.netlify.app/eventDetails/${userID}/${eventID}`,
         }).then(res => {
             // if email was successfully sent then append name to guestList
             console.log('message Sent', res)

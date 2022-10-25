@@ -14,20 +14,28 @@ app.use(cors())
 
 app.post("/send_mail", cors(), (req,res) => {
         console.log(req.body);
-        let {text} = req.body
+        let {name, email, startDate, eventName, location, url} = req.body
         const transport = nodemailer.createTransport({
-            host: process.env.MAIL_HOST,
-            port: process.env.MAIL_PORT,
+            // mailtrap.io
+            // host: process.env.MAIL_HOST,
+            // port: process.env.MAIL_PORT,
+            // auth: {
+            //     user: process.env.MAIL_USER,
+            //     pass: process.env.MAIL_PASS
+            // }
+
+            // gmail
+            service: 'gmail',
             auth: {
-                user: process.env.MAIL_USER,
-                pass: process.env.MAIL_PASS
+                user: process.env.GMAIL_USER,
+                pass: process.env.GMAIL_PASS
             }
         })
     
         transport.sendMail({
-            from: process.env.MAIL_FROM,
-            to: 'test@test.com',
-            subject: 'Test Email',
+            from: process.env.GMAIL_USER,
+            to: email,
+            subject: `Event: ${eventName}`,
             html: `<div className="email" style="
             border: 1px solid black;
             padding: 20px;
@@ -35,8 +43,11 @@ app.post("/send_mail", cors(), (req,res) => {
             line-height: 2;
             font-size: 20px; 
             ">
-            <h2>Here is your email!</h2>
-            <p>${text}</p>
+            <h2>${eventName}</h2>
+            <p>Hi ${name}, this is a confirmation email to the event you RSVP </p>
+            <p>${new Date(`'${startDate}'`).toDateString()}</p>
+            <p>${location}</p>
+            <p>Here is a <a href=${url}>link</a> to the event page</p>
         
             <p>All the best</p>
             </div>`
