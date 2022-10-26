@@ -26,7 +26,7 @@ a {
     display: inline-block;
 }
 
-.home a, .events a {
+.home a, .events a, .demo button {
     &:hover {
         background-color: $primary;
     }
