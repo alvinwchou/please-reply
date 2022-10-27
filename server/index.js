@@ -12,6 +12,10 @@ app.use(bodyParser.json())
 
 app.use(cors())
 
+app.get("/", (req, res) => {
+    res.status(200).json("hello");
+});
+
 app.post("/send_mail", cors(), (req,res) => {
         console.log(req.body);
         let {name, email, startDate, eventName, location, url} = req.body
