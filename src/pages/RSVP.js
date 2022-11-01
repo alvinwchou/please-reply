@@ -49,8 +49,6 @@ function RSVP() {
             url: `https://pleasereply.netlify.app/eventDetails/${userID}/${eventID}`,
         }).then(res => {
             // if email was successfully sent then append name to guestList
-            console.log('message Sent', res)
-            console.log({firebase, userID, eventID})
             const database = getDatabase(firebase);
             const dbRef = ref(database, `events/${userID}/${eventID}/guestList`)
 
@@ -60,7 +58,7 @@ function RSVP() {
             })
 
             navigate(`/eventDetails/${userID}/${eventID}`)
-        }).catch(err => console.log('message not sent',err))
+        }).catch(err => alert('Confirmation email could not be sent', err))
 	}
 
     return (
