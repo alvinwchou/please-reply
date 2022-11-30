@@ -40,7 +40,7 @@ function RSVP() {
         e.preventDefault();
 
         // axios.post("http://localhost:4000/send_mail", {
-        axios.post("https://please-reply-backend.herokuapp.com/send_mail", {
+        axios.post("https://please-reply-backend.onrender.com/send_mail", {
             name: rsvpForm.name,
             email: rsvpForm.email,
             startDate: event.startDate,
